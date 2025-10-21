@@ -63,7 +63,7 @@
             position: relative; 
         }
 
-        /* --- CSS Jam Lainnya (Tidak ada perubahan signifikan) --- */
+        /* --- CSS Jam Lainnya --- */
 
         h1 {
             font-size: 2.5em; 
@@ -223,11 +223,9 @@
         .video-section video {
             width: 100%;
             height: auto;
-            border: 3px solid #00e6e6; /* Border video */
+            border: 3px solid #00e6e6;
             box-shadow: 0 0 15px #00e6e6;
-            /* Tambahkan rasio aspek jika diperlukan, tapi 'width: 100%' sudah cukup */
         }
-        /* Hapus kelas .video-responsive karena tidak diperlukan untuk tag <video> */
 
     </style>
 </head>
@@ -236,7 +234,7 @@
     <div class="scroll-indicator scroll-left" title="Geser ke bawah">↓</div>
     <div class="scroll-indicator scroll-right" title="Geser ke bawah">↓</div>
 
-    <div class="clock-container">
+    <div class="clock-container" id="main-content">
         <h1>FIQRI NAUFAL</h1>
         <div class="analog-clock">
             <div class="center-dot"></div>
@@ -305,6 +303,18 @@
             // Memperbarui jam setiap 1 detik
             setInterval(updateClock, 1000);
             updateClock();
+            
+            // --- Fungsionalitas Auto-Scroll ---
+            const mainContent = document.getElementById('main-content');
+            
+            // Gunakan setTimeout untuk menunggu rendering awal
+            setTimeout(() => {
+                // Menggulir elemen 'main-content' (clock-container) ke tengah pandangan
+                mainContent.scrollIntoView({
+                    behavior: 'smooth', // Animasi gulir yang halus
+                    block: 'center'     // Memposisikan elemen di tengah secara vertikal
+                });
+            }, 100); // Penundaan kecil 100ms memastikan semua konten sudah dimuat
         });
     </script>
 </body>
